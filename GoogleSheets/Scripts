@@ -1,0 +1,29 @@
+function FloatBlockUp() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  var range = spreadsheet.getActiveRange();
+  var thissheet = spreadsheet.getActiveSheet();
+  var ARw = Number(range.getRow());
+  var LCol = thissheet.getRange('E1').getValue();
+  for (var col=2; col < LCol; col++) {
+    var TempA = thissheet.getRange(ARw, col).getValue();
+    var TempB = thissheet.getRange(ARw, col).offset(-1,0).getValue();
+    thissheet.getRange(ARw, col).setValue(TempB);
+    thissheet.getRange(ARw, col).offset(-1,0).setValue(TempA);
+  }  
+  spreadsheet.getCurrentCell().offset(-1,0).activate();
+};
+
+function FloatBlockDown() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  var range = spreadsheet.getActiveRange();
+  var thissheet = spreadsheet.getActiveSheet();
+  var ARw = Number(range.getRow());
+  var LCol = thissheet.getRange('E1').getValue();
+  for (var col=2; col < LCol; col++) {
+    var TempA = thissheet.getRange(ARw, col).getValue();
+    var TempB = thissheet.getRange(ARw, col).offset(1,0).getValue();
+    thissheet.getRange(ARw, col).setValue(TempB);
+    thissheet.getRange(ARw, col).offset(1,0).setValue(TempA);
+  }  
+  spreadsheet.getCurrentCell().offset(1,0).activate();
+};
